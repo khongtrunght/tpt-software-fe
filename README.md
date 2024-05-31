@@ -31,16 +31,18 @@
 
 ## Getting Started
 
-First, run the development server:
+## Running Dev
+
+To run dev mode, run the following command
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  sh start_dev.sh
+```
+
+To stop dev mode, run the following command
+
+```bash
+  sh stop_dev.sh
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

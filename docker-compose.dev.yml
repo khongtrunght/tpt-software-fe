@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    image: tpt-payroll-fe
+    volumes:
+      - ../frontend:/usr/app/frontend
+      - ~/pnpm-docker-store:/root/.local/share/pnpm/store
+      - /usr/app/frontend/node_modules
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
