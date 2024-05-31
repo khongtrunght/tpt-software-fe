@@ -12,7 +12,7 @@
 - **Server-Side Rendering (SSR)**: Utilizes SSR for faster initial load times and better SEO.
 - **Static Site Generation (SSG)**: Generates static pages at build time for improved performance.
 - **Incremental Static Regeneration (ISR)**: Updates static content incrementally without needing to rebuild the entire site.
-
+- **Lazy Loading**
 ### UI and Styling
 
 - **ShadCN/UI Components**: Uses ShadCN/UI for a collection of pre-built UI components, ensuring a consistent and professional look and feel.
