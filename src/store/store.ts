@@ -7,12 +7,14 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import { authApi } from "./APIs/auth";
 import { globalSlice } from "./modules/global";
 import { exampleApi } from "./APIs/example";
+import { departmentsApi } from "./APIs/departments";
 
 // Root reducer combining all the reducers
 const rootReducer = combineReducers({
   [globalSlice.name]: globalSlice.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [exampleApi.reducerPath]: exampleApi.reducer,
+  [departmentsApi.reducerPath]: departmentsApi.reducer,
 });
 
 // Persist configuration
@@ -30,7 +32,8 @@ export const setupStore = () => {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({ serializableCheck: false }).concat(
         authApi.middleware,
-        exampleApi.middleware
+        exampleApi.middleware,
+        departmentsApi.middleware
       ),
   });
   const persistor = persistStore(store);

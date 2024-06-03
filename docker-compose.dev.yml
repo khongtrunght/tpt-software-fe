@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile.dev
     image: tpt-payroll-fe
     volumes:
-      - ../frontend:/usr/app/frontend
+      - .:/usr/app/frontend
       - ~/pnpm-docker-store:/root/.local/share/pnpm/store
       - /usr/app/frontend/node_modules
     restart: unless-stopped

@@ -59,43 +59,43 @@ export const transformResponse = <T>(response: ApiResponse<T>): T => {
   throw new Error("Unexpected API response format"); // Or return an ApiError
 };
 
-export const getBaseQuery = (baseUrl = `${process.env.HOST}/api`) => {
+export const getBaseQuery = (baseUrl = `${process.env.HOST}`) => {
   return fetchBaseQuery({
     baseUrl,
-    prepareHeaders: async (headers) => {
-      let accessToken = "";
-      try {
-        if (typeof window !== "undefined") {
-          accessToken = getCookie(APP_ACCESSTOKEN) || "";
-        }
-      } catch (error) {
-        console.error("Error getting access token from cookie:", error);
-      }
+    // prepareHeaders: async (headers) => {
+    //   let accessToken = "";
+    //   try {
+    //     if (typeof window !== "undefined") {
+    //       accessToken = getCookie(APP_ACCESSTOKEN) || "";
+    //     }
+    //   } catch (error) {
+    //     console.error("Error getting access token from cookie:", error);
+    //   }
 
-      if (accessToken) {
-        headers.set("authorization", `Bearer ${accessToken}`);
-      } else {
-        const refreshToken = getCookie(APP_REFRESHTOKEN) || "";
-        const renew_token = await renewAccessToken(refreshToken);
-        if (
-          renew_token &&
-          renew_token.access_token &&
-          renew_token.access_token_expires_at
-        ) {
-          setCookieWithExpiry(
-            APP_ACCESSTOKEN,
-            renew_token.access_token,
-            renew_token.access_token_expires_at
-          );
-          headers.set("authorization", `Bearer ${renew_token.access_token}`);
-        } else {
-          console.error(
-            "Không thể xác định phiên đăng nhập. Vui lòng đăng nhập lại"
-          );
-          window.location.href = "/login";
-        }
-      }
-      return headers;
-    },
+    //   if (accessToken) {
+    //     headers.set("authorization", `Bearer ${accessToken}`);
+    //   } else {
+    //     const refreshToken = getCookie(APP_REFRESHTOKEN) || "";
+    //     const renew_token = await renewAccessToken(refreshToken);
+    //     if (
+    //       renew_token &&
+    //       renew_token.access_token &&
+    //       renew_token.access_token_expires_at
+    //     ) {
+    //       setCookieWithExpiry(
+    //         APP_ACCESSTOKEN,
+    //         renew_token.access_token,
+    //         renew_token.access_token_expires_at
+    //       );
+    //       headers.set("authorization", `Bearer ${renew_token.access_token}`);
+    //     } else {
+    //       console.error(
+    //         "Không thể xác định phiên đăng nhập. Vui lòng đăng nhập lại"
+    //       );
+    //       window.location.href = "/login";
+    //     }
+    //   }
+    //   return headers;
+    // },
   });
 };

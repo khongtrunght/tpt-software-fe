@@ -87,38 +87,33 @@ export function CustomLayout({
             isCollapsed={isCollapsed}
             links={[
               {
-                title: "Timetable",
+                title: "Phòng ban",
                 label: "",
                 icon: Archive,
-                variant: "ghost",
-                href: "/",
+                href: "/departments",
               },
               {
                 title: "Professors",
                 label: "240",
                 icon: Inbox,
-                variant: "default",
                 href: "/professors",
               },
               {
                 title: "Rooms",
                 label: "64",
                 icon: File,
-                variant: "ghost",
                 href: "/rooms",
               },
               {
                 title: "Courses",
                 label: "200",
                 icon: Send,
-                variant: "ghost",
                 href: "/courses",
               },
               {
                 title: "Students",
                 label: "12000",
                 icon: ArchiveX,
-                variant: "ghost",
                 href: "/students",
               },
               // {
@@ -137,21 +132,18 @@ export function CustomLayout({
                 title: "Settings",
                 label: "972",
                 icon: Users2,
-                variant: "ghost",
                 href: "/settings",
               },
               {
                 title: "Setups",
                 label: "342",
                 icon: AlertCircle,
-                variant: "ghost",
                 href: "/setups",
               },
               {
                 title: "Help",
                 label: "128",
                 icon: MessagesSquare,
-                variant: "ghost",
                 href: "/help",
               },
               // {
@@ -190,8 +182,8 @@ export function CustomLayout({
 }
 const accounts = [
   {
-    label: "HUST-Hanoi University of Science and Technology",
-    email: "thang.lq194838@sis.hust.edu.vn",
+    label: "Công ty TPT Invoice",
+    email: "thanglq.work@gmail.com",
     icon: (
       <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <title>Vercel</title>
@@ -200,8 +192,8 @@ const accounts = [
     ),
   },
   {
-    label: "VietNam National University",
-    email: "VNU@sis.hust.edu.vn",
+    label: "Công ty MISA",
+    email: "MISA@sis.hust.edu.vn",
     icon: (
       <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <title>Gmail</title>
