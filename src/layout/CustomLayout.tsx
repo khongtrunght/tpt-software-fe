@@ -99,10 +99,10 @@ export function CustomLayout({
                 href: "/professors",
               },
               {
-                title: "Rooms",
+                title: "Hợp đồng",
                 label: "64",
                 icon: File,
-                href: "/rooms",
+                href: "/contracts",
               },
               {
                 title: "Courses",

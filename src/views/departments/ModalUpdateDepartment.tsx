@@ -12,6 +12,26 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { IDepartment } from "@/interfaces/department.interface";
 import { memo, useCallback, useEffect, useState } from "react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+const formSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  description: z.string(),
+  created_at: z.string(),
+  created_by: z.string(),
+});
 
 export const ModalUpdateDepartment = memo(function ModalUpdateDepartment({
   open,
@@ -22,58 +42,87 @@ export const ModalUpdateDepartment = memo(function ModalUpdateDepartment({
   setVisible: (visible: boolean) => void;
   selectedDepartment: IDepartment | null;
 }) {
-  const [data, setData] = useState<IDepartment>({
-    id: "",
-    name: "",
-    description: "",
-    created_at: "",
-    created_by: "",
+  const form = useForm<IDepartment>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      id: "",
+      name: "",
+      code: "",
+      description: "",
+      created_at: "",
+      created_by: "",
+    },
   });
-  const onValueChange = useCallback((key: string, value: string) => {
-    setData((prev) => ({ ...prev, [key]: value }));
+
+  const onSubmit = useCallback((values: IDepartment) => {
+    console.log(values);
   }, []);
 
   useEffect(() => {
     if (selectedDepartment) {
-      setData(selectedDepartment);
-    }
-  }, [selectedDepartment]);
+      form.reset(selectedDepartment);
+    } else form.reset();
+  }, [form, selectedDepartment]);
   return (
     <Dialog open={open} onOpenChange={setVisible}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit department</DialogTitle>
-          <DialogDescription>
+          <DialogTitle>
+            {selectedDepartment ? "Cập nhật phòng ban" : "Tạo mới phòng ban"}
+          </DialogTitle>
+          {/* <DialogDescription>
             Make changes to your profile here. Click save when you are done.
-          </DialogDescription>
+          </DialogDescription> */}
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input
-              id="name"
-              value={data.name}
-              onChange={(e) => onValueChange("name", e.target.value)}
-              className="col-span-3"
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tên phòng ban</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Tên phòng ban" {...field} />
+                  </FormControl>
+                  {/* <FormDescription>
+                    This is your public display name.
+                  </FormDescription>
+                  <FormMessage /> */}
+                </FormItem>
+              )}
             />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="description" className="text-right">
-              Description
-            </Label>
-            <Input
-              id="description"
-              value={data.description}
-              onChange={(e) => onValueChange("description", e.target.value)}
-              className="col-span-3"
+            <FormField
+              control={form.control}
+              name="code"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Mã phòng ban</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Mã phòng ban..." {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
             />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Mô tả</FormLabel>
+                  <FormControl>
+                    <Input placeholder="shadcn" {...field} />
+                  </FormControl>
+                  <FormDescription>Mô tả về phòng bàn</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <DialogFooter>
+              <Button type="submit">Save changes</Button>
+            </DialogFooter>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );

@@ -83,7 +83,7 @@ export function DataTable<T extends object>({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
+              Sắp xếp cột <ChevronDownIcon className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -150,7 +150,7 @@ export function DataTable<T extends object>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Không có kết quả.
                 </TableCell>
               </TableRow>
             )}
@@ -169,7 +169,7 @@ export function DataTable<T extends object>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            Trang trước
           </Button>
           <Button
             variant="outline"
@@ -177,7 +177,7 @@ export function DataTable<T extends object>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            Tiếp theo
           </Button>
         </div>
       </div>
