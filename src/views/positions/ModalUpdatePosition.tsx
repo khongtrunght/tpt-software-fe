@@ -4,72 +4,72 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import {
-  Form,
   FormControl,
   FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
+  Form
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { IDepartment } from "@/interfaces/department.interface";
+import { IPosition } from "@/interfaces/positions.interface";
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { memo, useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 const formSchema = z.object({
   id: z.string(),
   name: z.string(),
-  description: z.string(),
+  code: z.string(),
+  note: z.string(),
   created_at: z.string(),
   created_by: z.string(),
 });
-
-export const ModalUpdateDepartment = memo(function ModalUpdateDepartment({
+export const ModalUpdatePosition = memo(function ModalUpdatePosition({
   open,
   setVisible,
-  selectedDepartment,
+  selectedPosition,
 }: {
   open: boolean;
   setVisible: (visible: boolean) => void;
-  selectedDepartment: IDepartment | null;
+  selectedPosition: IPosition | null;
 }) {
-  const form = useForm<IDepartment>({
+  const form = useForm<IPosition>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       id: "",
       name: "",
       code: "",
-      description: "",
+      note: "",
       created_at: "",
       created_by: "",
     },
   });
 
-  const onSubmit = useCallback((values: IDepartment) => {
+  const onSubmit = useCallback((values: IPosition) => {
     console.log(values);
   }, []);
 
   useEffect(() => {
-    if (selectedDepartment) {
-      form.reset(selectedDepartment);
+    if (selectedPosition) {
+      form.reset(selectedPosition);
     } else form.reset();
-  }, [form, selectedDepartment]);
+  }, [form, selectedPosition]);
   return (
     <Dialog open={open} onOpenChange={setVisible}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>
-            {selectedDepartment ? "Cập nhật phòng ban" : "Tạo mới phòng ban"}
+            {selectedPosition ? "Cập nhật chức vụ" : "Tạo mới chức vụ"}
           </DialogTitle>
           {/* <DialogDescription>
-            Make changes to your profile here. Click save when you are done.
-          </DialogDescription> */}
+          Make changes to your profile here. Click save when you are done.
+        </DialogDescription> */}
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -78,14 +78,14 @@ export const ModalUpdateDepartment = memo(function ModalUpdateDepartment({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Tên phòng ban</FormLabel>
+                  <FormLabel>Tên chức vụ</FormLabel>
                   <FormControl>
-                    <Input placeholder="Tên phòng ban" {...field} />
+                    <Input placeholder="Tên chức vụ" {...field} />
                   </FormControl>
                   {/* <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
-                  <FormMessage /> */}
+                  This is your public display name.
+                </FormDescription>
+                <FormMessage /> */}
                 </FormItem>
               )}
             />
@@ -94,23 +94,23 @@ export const ModalUpdateDepartment = memo(function ModalUpdateDepartment({
               name="code"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Mã phòng ban</FormLabel>
+                  <FormLabel>Mã chức vụ</FormLabel>
                   <FormControl>
-                    <Input placeholder="Mã phòng ban..." {...field} />
+                    <Input placeholder="Mã chức vụ..." {...field} />
                   </FormControl>
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="description"
+              name="note"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Mô tả</FormLabel>
                   <FormControl>
                     <Input placeholder="shadcn" {...field} />
                   </FormControl>
-                  <FormDescription>Mô tả về phòng bàn</FormDescription>
+                  <FormDescription>Mô tả về chức vụ</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

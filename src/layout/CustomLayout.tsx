@@ -46,7 +46,7 @@ export function CustomLayout({
         direction="horizontal"
         onLayout={(sizes: number[]) => {
           document.cookie = `react-resizable-panels:layout=${JSON.stringify(
-            sizes
+            sizes,
           )}`;
         }}
         className="h-full max-h-[800px] items-stretch"
@@ -60,24 +60,24 @@ export function CustomLayout({
           onCollapse={() => {
             setIsCollapsed(true);
             document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
-              true
+              true,
             )}`;
           }}
           onExpand={() => {
             setIsCollapsed(false);
             document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
-              false
+              false,
             )}`;
           }}
           className={cn(
             isCollapsed &&
-              "min-w-[50px] transition-all duration-300 ease-in-out"
+              "min-w-[50px] transition-all duration-300 ease-in-out",
           )}
         >
           <div
             className={cn(
               "flex h-[52px] items-center justify-center",
-              isCollapsed ? "h-[52px]" : "px-2"
+              isCollapsed ? "h-[52px]" : "px-2",
             )}
           >
             <AccountSwitcher isCollapsed={isCollapsed} accounts={accounts} />
@@ -91,6 +91,12 @@ export function CustomLayout({
                 label: "",
                 icon: Archive,
                 href: "/departments",
+              },
+              {
+                title: "Chức vụ",
+                label: "",
+                icon: Archive,
+                href: "/positions",
               },
               {
                 title: "Professors",
