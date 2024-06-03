@@ -95,7 +95,7 @@ export function CustomLayout({
               {
                 title: "Chức vụ",
                 label: "",
-                icon: Archive,
+                icon: Users2,
                 href: "/positions",
               },
               {
