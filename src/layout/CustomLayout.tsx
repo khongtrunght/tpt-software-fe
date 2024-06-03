@@ -92,12 +92,12 @@ export function CustomLayout({
                 icon: Archive,
                 href: "/departments",
               },
-              // {
-              //   title: "Professors",
-              //   label: "240",
-              //   icon: Inbox,
-              //   href: "/professors",
-              // },
+              {
+                title: "Chức vụ",
+                label: "",
+                icon: Archive,
+                href: "/positions",
+              },
               {
                 title: "Hợp đồng",
                 label: "64",
