@@ -65,7 +65,7 @@ export const ModalUpdateDepartment = memo(function ModalUpdateDepartment({
   }, [form, selectedDepartment]);
   return (
     <Dialog open={open} onOpenChange={setVisible}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[640px]">
         <DialogHeader>
           <DialogTitle>
             {selectedDepartment ? "Cập nhật phòng ban" : "Tạo mới phòng ban"}
@@ -119,7 +119,7 @@ export const ModalUpdateDepartment = memo(function ModalUpdateDepartment({
               )}
             />
             <DialogFooter>
-              <Button type="submit">Save changes</Button>
+              <Button type="submit">Lưu thay đổi</Button>
             </DialogFooter>
           </form>
         </Form>

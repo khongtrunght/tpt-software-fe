@@ -21,6 +21,13 @@ interface NavProps {
     href: string;
   }[];
 }
+const isActive = (href: string, pathname: string) => {
+  if (href === "/") {
+    return pathname === "/";
+  }
+
+  return pathname.includes(href);
+};
 
 export function Nav({ links, isCollapsed }: NavProps) {
   const pathname = usePathname();
@@ -39,13 +46,13 @@ export function Nav({ links, isCollapsed }: NavProps) {
                   href={link.href}
                   className={cn(
                     buttonVariants({
-                      variant: link.href.includes(pathname)
+                      variant: isActive(link.href, pathname)
                         ? "default"
                         : "ghost",
                       size: "icon",
                     }),
                     "h-9 w-9",
-                    link.href.includes(pathname) &&
+                    isActive(link.href, pathname) &&
                       "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
                   )}
                 >
@@ -68,10 +75,10 @@ export function Nav({ links, isCollapsed }: NavProps) {
               href={link.href}
               className={cn(
                 buttonVariants({
-                  variant: link.href.includes(pathname) ? "default" : "ghost",
+                  variant: isActive(link.href, pathname) ? "default" : "ghost",
                   size: "sm",
                 }),
-                link.href.includes(pathname) &&
+                isActive(link.href, pathname) &&
                   "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
                 "justify-start"
               )}
@@ -82,7 +89,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
                 <span
                   className={cn(
                     "ml-auto",
-                    link.href.includes(pathname) &&
+                    isActive(link.href, pathname) &&
                       "text-background dark:text-white"
                   )}
                 >

@@ -54,7 +54,7 @@ export const departmentsApi = createApi({
       }
     >({
       query: (args) => ({
-        url: `/department/${args.id}`,
+        url: `/departments/${args.id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["deparments"],

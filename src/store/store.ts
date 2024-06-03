@@ -8,6 +8,7 @@ import { authApi } from "./APIs/auth";
 import { globalSlice } from "./modules/global";
 import { exampleApi } from "./APIs/example";
 import { departmentsApi } from "./APIs/departments";
+import { contractsApi } from "./APIs/contracts";
 
 // Root reducer combining all the reducers
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
   [exampleApi.reducerPath]: exampleApi.reducer,
   [departmentsApi.reducerPath]: departmentsApi.reducer,
+  [contractsApi.reducerPath]: contractsApi.reducer,
 });
 
 // Persist configuration
@@ -33,7 +35,8 @@ export const setupStore = () => {
       getDefaultMiddleware({ serializableCheck: false }).concat(
         authApi.middleware,
         exampleApi.middleware,
-        departmentsApi.middleware
+        departmentsApi.middleware,
+        contractsApi.middleware
       ),
   });
   const persistor = persistStore(store);

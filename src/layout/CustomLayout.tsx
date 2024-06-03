@@ -92,30 +92,30 @@ export function CustomLayout({
                 icon: Archive,
                 href: "/departments",
               },
-              {
-                title: "Professors",
-                label: "240",
-                icon: Inbox,
-                href: "/professors",
-              },
+              // {
+              //   title: "Professors",
+              //   label: "240",
+              //   icon: Inbox,
+              //   href: "/professors",
+              // },
               {
                 title: "Hợp đồng",
                 label: "64",
                 icon: File,
                 href: "/contracts",
               },
-              {
-                title: "Courses",
-                label: "200",
-                icon: Send,
-                href: "/courses",
-              },
-              {
-                title: "Students",
-                label: "12000",
-                icon: ArchiveX,
-                href: "/students",
-              },
+              // {
+              //   title: "Courses",
+              //   label: "200",
+              //   icon: Send,
+              //   href: "/courses",
+              // },
+              // {
+              //   title: "Students",
+              //   label: "12000",
+              //   icon: ArchiveX,
+              //   href: "/students",
+              // },
               // {
               //   title: "Trash",
               //   label: "",
